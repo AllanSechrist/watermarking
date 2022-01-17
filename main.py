@@ -1,15 +1,8 @@
-from email.mime import image
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk, ImageDraw, ImageFont
 
 
-# root = Tk()
-# frm = ttk.Frame(root, padding=10)
-# frm.grid()
-# ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
-# ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-# root.mainloop()
 root = Tk()  
 canvas = Canvas(root, width = 1260, height = 840)  
 canvas.pack()
@@ -31,6 +24,5 @@ img_with_watermark = Image.alpha_composite(image_resize, overlay)
 
 img = ImageTk.PhotoImage(image = img_with_watermark)
  
-canvas.create_image(20, 20, anchor=NW, image=img)
-# canvas.create_image(20, 20, anchor=NW, image=wtr_mark) 
+canvas.create_image(20, 20, anchor=NW, image=img) 
 root.mainloop() 
