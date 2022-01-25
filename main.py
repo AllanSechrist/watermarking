@@ -24,5 +24,7 @@ file_menu.add_command(label="Exit", command=root.destroy)
 menu_bar.add_cascade(label="File", menu=file_menu)
 
 
-root.mainloop() 
+
+if __name__ == "__main__":
+    root.mainloop() 
 
