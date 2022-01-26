@@ -10,13 +10,11 @@ from image_manager import ImageManager
 class MenuManager(object):
     def __init__(self, root):
         self.root = root
-    
         self.image_manager = ImageManager(root)
 
 
     def open_image_file(self):
         file_name = filedialog.askopenfilename(initialdir="/", title="Select a file",filetypes=(("png files", "*.png"), ("jpeg files", "*.jpg")))
-
         self.image_manager.create_and_display_watermarked_image(file_name)
 
           
@@ -26,8 +24,6 @@ class MenuManager(object):
 
         if image_file:
             self.root.title(f'{image_file} - Watermark Adder')
-
-            # save the file
             self.image_manager.image_to_save.save(image_file) 
 
 
@@ -43,9 +39,10 @@ class MenuManager(object):
         entry.focus_set()
         entry.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        
+
         def set_text(): # sets new watermark
             self.image_manager.watermark_text = entry.get()
+            
             if not self.image_manager.base_image:
                 label.configure(text="Your Watermark has been saved!")
             else:
