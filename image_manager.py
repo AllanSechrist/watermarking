@@ -47,19 +47,15 @@ class ImageManager():
 
     def resize_image(self, my_image): # Might change this / add a function to zoom in and out of the picture
         width, height = my_image.size
+        height_resize_var = 1
         
         if height > width:
             canvas_height = self.canvas.winfo_height()
             height_resize_var = height / canvas_height # Not sure how to calculate this yet
 
-            base_width = self.canvas.winfo_width()
-            width_percent = base_width / float(width)
-            height_size = int(float(height) * float(width_percent))
-            resize = my_image.resize((int(base_width / height_resize_var), int((height_size / height_resize_var))), Image.ANTIALIAS)
-        else:
-            base_width = self.canvas.winfo_width()
-            width_percent = base_width / float(width)
-            height_size = int(float(height) * float(width_percent))
-            resize = my_image.resize((base_width, height_size), Image.ANTIALIAS)
+        base_width = self.canvas.winfo_width()
+        width_percent = base_width / float(width)
+        height_size = int(float(height) * float(width_percent))
+        resize = my_image.resize((int(base_width / height_resize_var), int((height_size / height_resize_var))), Image.ANTIALIAS)
 
         return resize

@@ -1,7 +1,6 @@
 # from textwrap import fill
 from tkinter import *
 from tkinter import filedialog
-from PIL import Image, ImageDraw, ImageFont, ImageTk
 from image_manager import ImageManager
 
 
@@ -20,7 +19,7 @@ class MenuManager(object):
           
     def save_as_file(self):
         files = [("PNG File", "*.png")]
-        image_file = filedialog.asksaveasfilename(initialdir = "C:\\Users\\Allan\\Projects\\pycourse\\watermarking",filetypes=files, defaultextension=files)
+        image_file = filedialog.asksaveasfilename(initialdir = "/",filetypes=files, defaultextension=files)
 
         if image_file:
             self.root.title(f'{image_file} - Watermark Adder')
