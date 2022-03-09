@@ -1,6 +1,6 @@
 from tkinter import *
 from file_menu import FileMenu
-
+from edit_menu import EditMenu
 
 
 class App(Tk):
@@ -10,6 +10,7 @@ class App(Tk):
         menu_bar = Menu(self)
         self.config(menu=menu_bar)
         self.file_menu = FileMenu(self, menu_bar)
+        self.edit_menu = EditMenu(self, menu_bar)
         
 
 
