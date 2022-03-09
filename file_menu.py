@@ -1,20 +1,32 @@
-# from textwrap import fill
 from tkinter import *
 from tkinter import filedialog
 from image_manager import ImageManager
 
 
+class FileMenu(Menu):
+    def __init__(self, root, menu_bar):
+        super().__init__(menu_bar, tearoff=False)
+        self.add_command(label="Open", command=self.open_image_file)
+        self.add_command(label="Save As", command=self.save_as_file)
+        self.add_command(label="Edit Watermark", command=self.get_user_text)
 
+        # add Exit menu option
+        self.add_separator()
+        self.add_command(label="Exit", command=self.close)
+        menu_bar.add_cascade(label="File", menu=self)
 
-class MenuManager(object):
-    def __init__(self, root):
         self.root = root
         self.image_manager = ImageManager(root)
 
 
+    def close(self):
+        self.root.destroy()
+
+
     def open_image_file(self):
-        file_name = filedialog.askopenfilename(initialdir="/", title="Select a file",filetypes=(("png files", "*.png"), ("jpeg files", "*.jpg")))
-        self.image_manager.create_and_display_watermarked_image(file_name)
+        file_name = filedialog.askopenfilename(initialdir="/", title="Select a file",filetypes=(("png files", "*.png"), ("jpg files", "*.jpg"), ("JPEG files", "*.jpeg")))
+        if file_name:
+            self.image_manager.create_and_display_watermarked_image(file_name)
 
           
     def save_as_file(self):
@@ -50,6 +62,3 @@ class MenuManager(object):
             window.destroy()
 
         Button(window, text= "Ok",width= 20, command=set_text).pack(pady=40)
-
-
-  
