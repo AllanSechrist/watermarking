@@ -5,11 +5,11 @@ WIDTH = 1260
 HEIGHT = 840 
 
 
-class ImageManager():
+class ImageManager(Canvas):
     def __init__(self, root):
-        self.canvas = Canvas(root, width = WIDTH, height = HEIGHT)  
-        self.canvas.pack()
-        self.canvas.bind('<B1-Motion>', self.move_watermark)
+        super().__init__(root, width=WIDTH, height=HEIGHT)
+        self.pack()
+        self.bind('<B1-Motion>', self.move_watermark)
         self.image_to_save = None
         self.watermark_text = "Allan's WaterMarker"
         self.watermark_pos = None
@@ -31,7 +31,7 @@ class ImageManager():
         img_with_watermark = Image.alpha_composite(self.base_image, self.overlay)
         self.image_to_save = img_with_watermark 
         img = ImageTk.PhotoImage(image = img_with_watermark)
-        self.canvas.create_image(20, 20, anchor=NW, image=img)
+        self.create_image(20, 20, anchor=NW, image=img)
 
 
     def create_and_display_watermarked_image(self, file_name):
@@ -50,10 +50,10 @@ class ImageManager():
         height_resize_var = 1
         
         if height > width:
-            canvas_height = self.canvas.winfo_height()
+            canvas_height = self.winfo_height()
             height_resize_var = height / canvas_height # Not sure how to calculate this yet
 
-        base_width = self.canvas.winfo_width()
+        base_width = self.winfo_width()
         width_percent = base_width / float(width)
         height_size = int(float(height) * float(width_percent))
         resize = my_image.resize((int(base_width / height_resize_var), int((height_size / height_resize_var))), Image.ANTIALIAS)
